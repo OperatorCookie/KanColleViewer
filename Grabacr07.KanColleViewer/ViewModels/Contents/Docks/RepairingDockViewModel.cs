@@ -77,8 +77,8 @@ namespace Grabacr07.KanColleViewer.ViewModels.Docks
 					if (this.IsNotifyCompleted)
 					{
 						Toast.Show(
-							"整備完了",
-							string.Format("入渠第 {0} ドックでの「{1}」の整備が完了しました。", this.Id, this.Ship),
+							"Repair Dock",
+							string.Format("Dock {0} has finished repairing {1}", this.Id, this.Ship),
 							() => this.Messenger.Raise(new WindowActionMessage(WindowAction.Active, "Window/Activate")));
 					}
 				};

@@ -36,7 +36,7 @@ namespace Grabacr07.KanColleViewer.ViewModels.Contents.Fleets
 
 		public string Speed
 		{
-			get { return this.source.Speed == KanColleWrapper.Models.Speed.Fast ? "高速艦隊" : "低速艦隊"; }
+			get { return this.source.Speed == KanColleWrapper.Models.Speed.Fast ? "Fast Fleet" : "Slow Fleet"; }
 		}
 
 		public int AirSuperiorityPotential

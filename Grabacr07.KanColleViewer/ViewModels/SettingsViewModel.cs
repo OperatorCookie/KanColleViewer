@@ -164,7 +164,7 @@ namespace Grabacr07.KanColleViewer.ViewModels
 
 		public SettingsViewModel()
 		{
-			this.Name = "設定";
+			this.Name = "Options";
 
 			this.CompositeDisposable.Add(new PropertyChangedEventListener(Settings.Current)
 			{

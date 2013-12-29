@@ -35,10 +35,10 @@
 					<TextBlock DataContext="{Binding SelectedFleet}"
 							   Foreground="{DynamicResource AccentForegroundBrushKey}">
 						<Run Text="        " />
-						<Run Text="平均レベル:" />
+						<Run Text="Average level:" />
 						<Run Text="{Binding AverageLevel, Mode=OneWay}" />
 						<Run Text="        " />
-						<Run Text="制空戦力:" />
+						<Run Text="Air superiority value:" />
 						<Run Text="{Binding AirSuperiorityPotential, Mode=OneWay}" />
 						<Run Text="        " />
 						<Run Text="{Binding Speed, Mode=OneWay}" />
