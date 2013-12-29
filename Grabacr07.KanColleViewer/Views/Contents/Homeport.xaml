@@ -38,11 +38,10 @@
 					<Run Text="{Binding Model.Nickname, Mode=OneWay}"
 						 Style="{DynamicResource PickupTextElementStyleKey}"
 						 FontSize="18" />
+					<LineBreak />
 					<Run Text="{Binding Model.Rank, Mode=OneWay}"
 						 Style="{DynamicResource PickupTextElementStyleKey}"
-						 FontSize="14" />
-					<LineBreak />
-					<Run Text="{Binding Model.Comment, Mode=OneWay}" />
+						 FontSize="12" />
 			</TextBlock>
 
 			<TextBlock>
