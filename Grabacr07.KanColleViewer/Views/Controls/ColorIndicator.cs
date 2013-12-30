@@ -55,10 +55,11 @@ namespace Grabacr07.KanColleViewer.Views.Controls
 
 			var percentage = value.Current / (double)value.Maximum;
 			var color = percentage > 0.5
-				? Color.FromRgb((byte)(180 - 140 * ((percentage - 0.5) * 2)), 180, 0)
-				: Color.FromRgb(180, (byte)(40 + 140 * (percentage * 2)), 0);
+				? Color.FromRgb((byte)(255 - 255 * ((percentage - 0.5) * 2)), 255, 0)
+				: Color.FromRgb(255, (byte)(255 * (percentage * 2)), 0);
 
 			this.Foreground = new SolidColorBrush(color);
+			this.Background = new SolidColorBrush(Color.FromRgb(0, 0, 0));
 		}
 	}
 }
