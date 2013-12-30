@@ -143,7 +143,7 @@
 						</DataTemplate.Resources>
 						<StackPanel>
 							<Grid HorizontalAlignment="Left"
-								  Margin="0,5">
+								  Margin="0,2">
 								<Grid.RowDefinitions>
 									<RowDefinition />
 									<RowDefinition Height="Auto" />

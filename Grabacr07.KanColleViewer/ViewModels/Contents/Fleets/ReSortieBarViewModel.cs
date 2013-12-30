@@ -152,7 +152,7 @@ namespace Grabacr07.KanColleViewer.ViewModels.Contents.Fleets
 
 		private void UpdateRemaining()
 		{
-			this.Remaining = this.source.Remaining.HasValue ? "Morale will be fully restored in: " + this.source.Remaining.Value.ToString(@"mm\:ss") : "";
+			this.Remaining = this.source.Remaining.HasValue ? "\nMorale will be fully restored in: " + this.source.Remaining.Value.ToString(@"mm\:ss") : "";
 		}
 	}
 }
