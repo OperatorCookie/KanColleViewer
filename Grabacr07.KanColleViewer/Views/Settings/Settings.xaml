@@ -280,6 +280,8 @@
 
 				<Rectangle Height="1"
 						   Style="{DynamicResource SeparatorRectangleStyleKey}" />
+				<TextBlock Text="Logging" Style="{DynamicResource HeaderTextBlockStyleKey}" />
+				<CheckBox Content="Enable Logging Results to File" Margin="15,0,0,0" IsChecked="{Binding EnableLogging}"/>
 
 			</StackPanel>
 		</TabItem>

@@ -37,6 +37,8 @@ namespace Grabacr07.KanColleViewer
 			proxy.UseProxyOnConnect = Settings.Current.EnableProxy;
 			proxy.UseProxyOnSSLConnect = Settings.Current.EnableSSLProxy;
 
+			KanColleClient.Current.Homeport.Logger.EnableLogging = Settings.Current.EnableLogging;
+
 			if (Toast.IsSupported)
 			{
 				Toast.TryInstallShortcut();
