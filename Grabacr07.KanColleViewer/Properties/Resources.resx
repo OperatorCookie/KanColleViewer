@@ -369,4 +369,10 @@
   <data name="Dockyard_Notifications_Individual" xml:space="preserve">
     <value>Individual Dock Settings</value>
   </data>
+  <data name="Settings_Logging" xml:space="preserve">
+    <value>Logging</value>
+  </data>
+  <data name="Settings_Logging_Enable" xml:space="preserve">
+    <value>Log drops and crafting results to file</value>
+  </data>
 </root>
