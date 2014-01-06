@@ -34,7 +34,7 @@ namespace Grabacr07.KanColleWrapper.Models
 			if (RawData.api_name == "駆逐艦") { return string.Format("DD"); }
 			if (RawData.api_name == "潜水艦") { return string.Format("SS"); }
 			if (RawData.api_name == "潜水空母") { return string.Format("SSV"); }
-			if (RawData.api_name == "装甲空母") { return string.Format("CV"); }
+			if (RawData.api_name == "装甲空母") { return string.Format("CVB"); }
 			if (RawData.api_name == "揚陸艦") { return string.Format("LHA"); }
 			return this.RawData.api_name; }
 		}
