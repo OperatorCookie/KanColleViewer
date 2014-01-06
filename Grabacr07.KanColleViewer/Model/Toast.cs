@@ -87,7 +87,7 @@ namespace Grabacr07.KanColleViewer.Model
 
 		public static bool TryInstallShortcut()
 		{
-			var shortcutPath = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\Programs\\提督業も忙しい！.lnk";
+			var shortcutPath = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\Programs\\KanColleViewer.lnk";
 
 			if (!File.Exists(shortcutPath))
 			{

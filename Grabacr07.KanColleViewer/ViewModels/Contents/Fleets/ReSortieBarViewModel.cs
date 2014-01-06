@@ -135,7 +135,7 @@ namespace Grabacr07.KanColleViewer.ViewModels.Contents.Fleets
 
 			if (this.source.Reason.HasFlag(CanReSortieReason.Wounded))
 			{
-				list.Add("moderate or severely damaged");
+				list.Add("severely damaged");
 			}
 			if (this.source.Reason.HasFlag(CanReSortieReason.LackForResources))
 			{
@@ -146,7 +146,7 @@ namespace Grabacr07.KanColleViewer.ViewModels.Contents.Fleets
 				list.Add("low morale");
 			}
 
-			this.Message = string.Format("There are ships with the following condition: {0}.", list.ToString(", "));
+			this.Message = string.Format("Active condition: {0}.", list.ToString(", "));
 			this.CanReSortie = false;
 		}
 

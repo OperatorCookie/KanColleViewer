@@ -82,10 +82,9 @@
 					<Border Padding="10,5"
 							Background="#FF204080">
 						<TextBlock Foreground="{DynamicResource ActiveForegroundBrushKey}">
-							<Run Text="This fleet is on an expedition." />
-							<Run Text=" Time of completion:" />
+							<Run Text="On an expedition until " />
 							<Run Text="{Binding ReturnTime, Mode=OneWay}" />
-							<Run Text=" ETA:" />
+							<Run Text="and will be completed in" />
 							<Run Text="{Binding Remaining, Mode=OneWay}" />
 						</TextBlock>
 					</Border>
