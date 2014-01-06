@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using Grabacr07.KanColleViewer.Model;
 using Grabacr07.KanColleViewer.Properties;
 using Grabacr07.KanColleViewer.ViewModels.Messages;
@@ -45,6 +46,23 @@ namespace Grabacr07.KanColleViewer.ViewModels
 		public bool CanOpenScreenshotFolder
 		{
 			get { return Directory.Exists(this.ScreenshotFolder); }
+		}
+
+		#endregion
+
+		#region ScreenshotImageFormat 変更通知プロパティ
+
+		public SupportedImageFormat ScreenshotImageFormat
+		{
+			get { return Settings.Current.ScreenshotImageFormat; }
+			set
+			{
+				if (Settings.Current.ScreenshotImageFormat != value)
+				{
+					Settings.Current.ScreenshotImageFormat = value;
+					this.RaisePropertyChanged();
+				}
+			}
 		}
 
 		#endregion
@@ -154,6 +172,44 @@ namespace Grabacr07.KanColleViewer.ViewModels
 
 		#endregion
 
+		#region EnableLogging 変更通知プロパティ
+
+		public bool EnableLogging
+		{
+			get { return Settings.Current.EnableLogging; }
+			set
+			{
+				if (Settings.Current.EnableLogging != value)
+				{
+					Settings.Current.EnableLogging = value;
+					KanColleClient.Current.Homeport.Logger.EnableLogging = value;
+					this.RaisePropertyChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region Libraries 変更通知プロパティ
+
+		private IEnumerable<BindableTextViewModel> _Libraries;
+
+		public IEnumerable<BindableTextViewModel> Libraries
+		{
+			get { return this._Libraries; }
+			set
+			{
+				if (this._Libraries != value)
+				{
+					this._Libraries = value;
+					this.RaisePropertyChanged();
+				}
+			}
+		}
+
+		#endregion
+
+
 		public bool HasErrors
 		{
 			get { return this.reSortieConditionError != null; }
@@ -164,7 +220,19 @@ namespace Grabacr07.KanColleViewer.ViewModels
 
 		public SettingsViewModel()
 		{
-			this.Name = "Options";
+			if (Helper.IsInDesignMode) return;
+
+			this.Name = Properties.Resources.ViewModels_Settings;
+
+			this.Libraries = App.ProductInfo.Libraries.Aggregate(
+				new List<BindableTextViewModel>(),
+				(list, lib) =>
+				{
+					list.Add(new BindableTextViewModel { Text = list.Count == 0 ? "Build with " : ", " });
+					list.Add(new HyperlinkViewModel { Text = lib.Name.Replace(' ', Convert.ToChar(160)), Uri = lib.Url });
+					// プロダクト名の途中で改行されないように、space を non-break space に置き換えてあげてるんだからねっっ
+					return list;
+				});
 
 			this.CompositeDisposable.Add(new PropertyChangedEventListener(Settings.Current)
 			{

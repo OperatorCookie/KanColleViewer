@@ -74,7 +74,7 @@ namespace Grabacr07.KanColleViewer.ViewModels.Contents.Fleets
 						Toast.Show(
 							"Expedition",
 							args.FleetName + " has returned from the expedition.",
-							() => this.Messenger.Raise(new WindowActionMessage(WindowAction.Active, "Window/Activate")));
+							() => App.ViewModelRoot.Messenger.Raise(new WindowActionMessage(WindowAction.Active, "Window/Activate")));
 					}
 				};
 			}

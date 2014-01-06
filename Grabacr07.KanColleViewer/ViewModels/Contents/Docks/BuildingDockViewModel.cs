@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -94,7 +94,7 @@ namespace Grabacr07.KanColleViewer.ViewModels.Contents.Docks
 						Toast.Show(
 							"Building Dock",
 							string.Format("Construction of {1} in dock {0} is complete.", this.Id, this.CanDisplayShipName ? "" + this.Ship + "" : "ship"),
-							() => this.Messenger.Raise(new WindowActionMessage(WindowAction.Active, "Window/Activate")));
+							() => App.ViewModelRoot.Messenger.Raise(new WindowActionMessage(WindowAction.Active, "Window/Activate")));
 					}
 				};
 			}

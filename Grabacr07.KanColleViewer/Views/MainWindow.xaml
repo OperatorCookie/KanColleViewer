@@ -43,6 +43,10 @@
 										 MessageKey="Window/Location">
 			<behaviors:SetWindowLocationAction />
 		</livet:InteractionMessageTrigger>
+		<livet:InteractionMessageTrigger Messenger="{Binding Messenger, Mode=OneWay}"
+										 MessageKey="Window/Activate">
+			<livet:WindowInteractionMessageAction />
+		</livet:InteractionMessageTrigger>
 	</i:Interaction.Triggers>
 
 	<Grid>
@@ -67,24 +71,17 @@
 					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
 
-				<chrome:CaptionButton Grid.Column="0"
-									  Margin="0"
-									  Padding="10,7"
-									  Width="Auto"
-									  Height="Auto"
-									  WindowChrome.IsHitTestVisibleInChrome="True">
-					<Path Width="20"
-						  Height="20"
-						  Style="{DynamicResource ApplicationIconKey}" />
-				</chrome:CaptionButton>
+				<controls:AppIcon Width="36"
+								  Height="36"
+								  Background="Transparent"
+								  AnchorVisibility="Collapsed"
+								  BandVisibility="Collapsed"/>
 
 				<TextBlock Grid.Column="1"
 						   Text="{Binding Title}"
 						   FontFamily="Segoe UI"
-						   FontSize="18"
-						   Margin="3,8,8,8"
-						   VerticalAlignment="Center"
-						   TextTrimming="CharacterEllipsis"
+						   FontSize="16"
+						   Margin="2,2,8,2"
 						   Opacity="0.85" />
 
 				<StackPanel Grid.Column="2"

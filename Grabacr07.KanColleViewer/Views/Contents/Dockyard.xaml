@@ -6,6 +6,7 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:livet="http://schemas.livet-mvvm.net/2011/wpf"
+			 xmlns:properties="clr-namespace:Grabacr07.KanColleViewer.Properties"
 			 xmlns:docks="clr-namespace:Grabacr07.KanColleViewer.ViewModels.Contents.Docks"
 			 mc:Ignorable="d"
 			 d:DesignWidth="700"
@@ -28,13 +29,6 @@
 							BorderThickness="1"
 							BorderBrush="{DynamicResource ActiveBorderBrushKey}"
 							Padding="5,8">
-						<i:Interaction.Triggers>
-							<livet:InteractionMessageTrigger Messenger="{Binding Messenger, Mode=OneWay}"
-															 MessageKey="Window/Activate">
-								<livet:WindowInteractionMessageAction />
-							</livet:InteractionMessageTrigger>
-						</i:Interaction.Triggers>
-
 						<Grid x:Name="Root">
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="Auto"
@@ -58,7 +52,7 @@
 									   Grid.Column="1"
 									   VerticalAlignment="Center"
 									   Margin="10,0">
-								<Run Text="Under construction"
+								<Run Text="{x:Static properties:Resources.Dockyard_ShipName}"
 									 FontSize="14" />
 								<LineBreak />
 								<Run Text="{Binding Ship, Mode=OneWay}"
@@ -69,7 +63,7 @@
 									   Grid.Column="2"
 									   VerticalAlignment="Center"
 									   Margin="10,0">
-								<Run Text="Time of completion"
+								<Run Text="{x:Static properties:Resources.Dockyard_TimeComplete}"
 									 FontSize="14" />
 								<LineBreak />
 								<Run Text="{Binding CompleteTime, Mode=OneWay}"
@@ -80,7 +74,7 @@
 									   Grid.Column="3"
 									   VerticalAlignment="Center"
 									   Margin="10,0">
-								<Run Text="ETA"
+								<Run Text="{x:Static properties:Resources.Dockyard_TimeRemaining}"
 									 FontSize="14" />
 								<LineBreak />
 								<Run Text="{Binding Remaining, Mode=OneWay}"
@@ -95,7 +89,7 @@
 									   VerticalAlignment="Center"
 									   Margin="30,0"
 									   Visibility="Collapsed">
-								<Run Text="Idle"
+								<Run Text="{x:Static properties:Resources.Dockyard_Unused}"
 									 FontSize="18" />
 							</TextBlock>
 							<TextBlock x:Name="LockedMessage"
@@ -105,7 +99,7 @@
 									   VerticalAlignment="Center"
 									   Margin="30,0"
 									   Visibility="Collapsed">
-								<Run Text="Locked"
+								<Run Text="{x:Static properties:Resources.Dockyard_Locked}"
 									 FontSize="18" />
 							</TextBlock>
 							<TextBlock x:Name="CompletedMessage"
@@ -115,7 +109,7 @@
 									   VerticalAlignment="Center"
 									   Margin="30,0"
 									   Visibility="Collapsed">
-								<Run Text="Completed!"
+								<Run Text="{x:Static properties:Resources.Dockyard_Complete}"
 									 FontSize="18"
 									 Style="{DynamicResource PickupTextElementStyleKey}" />
 							</TextBlock>
@@ -188,12 +182,12 @@
 					VerticalAlignment="Bottom">
 			<StackPanel Margin="10">
 				<TextBlock Margin="5">
-					<Run Text="Display settings"
+					<Run Text="{x:Static properties:Resources.Dockyard_Display_Title}"
 						 Style="{DynamicResource PickupTextElementStyleKey}" />
 				</TextBlock>
 				<CheckBox Margin="8,5"
 						  IsChecked="{Binding CanDisplayShipName, Mode=TwoWay}">
-					<TextBlock Text="Spoil me!" />
+					<TextBlock Text="{x:Static properties:Resources.Dockyard_Display_Reveal}" />
 				</CheckBox>
 			</StackPanel>
 
@@ -211,25 +205,25 @@
 					</Style>
 				</StackPanel.Style>
 				<TextBlock Margin="5">
-					<Run Text="Toast Notification"
+					<Run Text="{x:Static properties:Resources.Common_Notifications_Title}"
 						 Style="{DynamicResource PickupTextElementStyleKey}" />
-					<Run Text="(Windows 8.x)" />
+					<Run Text="{x:Static properties:Resources.Common_Notifications_Windows8}" />
 				</TextBlock>
 				<RadioButton Margin="8,5"
 							 IsChecked="{Binding IsNotifyCompleted}">
-					<TextBlock Text="Notify me" />
+					<TextBlock Text="{x:Static properties:Resources.Dockyard_Notifications_Enable}" />
 				</RadioButton>
 				<RadioButton Margin="8,5"
 							 IsEnabled="False">
 					<TextBlock>
-						<Run Text="Set individually"
+						<Run Text="{x:Static properties:Resources.Dockyard_Notifications_Individual}"
 							 TextDecorations="Strikethrough" />
-						<Run Text="(unimplemented)" />
+						<Run Text="{x:Static properties:Resources.Common_Notifications_NotImplemented}" />
 					</TextBlock>
 				</RadioButton>
 				<RadioButton Margin="8,5"
 							 IsChecked="True">
-					<TextBlock Text="Do not notify me" />
+					<TextBlock Text="{x:Static properties:Resources.Common_Notifications_Disable}" />
 				</RadioButton>
 			</StackPanel>
 		</StackPanel>

@@ -13,7 +13,7 @@ namespace Grabacr07.KanColleViewer.ViewModels.Contents
 
 		public ExpeditionsViewModel(FleetsViewModel fleets)
 		{
-			this.Name = "Expeditions";
+			this.Name = Properties.Resources.ViewModels_Expeditions;
 			this.Fleets = fleets;
 		}
 	}

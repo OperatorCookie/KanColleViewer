@@ -41,7 +41,9 @@ namespace Grabacr07.KanColleViewer.Model
 			{
 				ScreenshotFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures),
 				ScreenshotFilename = "KanColle-{0:d04}.png",
+				ScreenshotImageFormat = SupportedImageFormat.Png,
 				CanDisplayBuildingShipName = false,
+				EnableLogging = false,
 			};
 		}
 
@@ -85,6 +87,40 @@ namespace Grabacr07.KanColleViewer.Model
 				if (this._ScreenshotFilename != value)
 				{
 					this._ScreenshotFilename = value;
+					this.RaisePropertyChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region ScreenshotImageFormat 変更通知プロパティ
+
+		private SupportedImageFormat _ScreenshotImageFormat;
+
+		/// <summary>
+		/// スクリーンショットのイメージ形式を取得または設定します。
+		/// </summary>
+		public SupportedImageFormat ScreenshotImageFormat
+		{
+			get
+			{
+				switch (this._ScreenshotImageFormat)
+				{
+					case SupportedImageFormat.Png:
+					case SupportedImageFormat.Jpeg:
+						break;
+					default:
+						this._ScreenshotImageFormat = SupportedImageFormat.Png;
+						break;
+				}
+				return this._ScreenshotImageFormat;
+			}
+			set
+			{
+				if (this._ScreenshotImageFormat != value)
+				{
+					this._ScreenshotImageFormat = value;
 					this.RaisePropertyChanged();
 				}
 			}
@@ -303,6 +339,24 @@ namespace Grabacr07.KanColleViewer.Model
 
 		#endregion
 
+		#region EnableLogging 変更通知プロパティ
+
+		private bool _EnableLogging;
+
+		public bool EnableLogging
+		{
+			get { return this._EnableLogging; }
+			set
+			{
+				if (this._EnableLogging != value)
+				{
+					this._EnableLogging = value;
+					this.RaisePropertyChanged();
+				}
+			}
+		}
+
+		#endregion
 
 		public void Save()
 		{

@@ -79,7 +79,7 @@ namespace Grabacr07.KanColleViewer.ViewModels.Docks
 						Toast.Show(
 							"Repair Dock",
 							string.Format("Dock {0} has finished repairing {1}", this.Id, this.Ship),
-							() => this.Messenger.Raise(new WindowActionMessage(WindowAction.Active, "Window/Activate")));
+							() => App.ViewModelRoot.Messenger.Raise(new WindowActionMessage(WindowAction.Active, "Window/Activate")));
 					}
 				};
 			}

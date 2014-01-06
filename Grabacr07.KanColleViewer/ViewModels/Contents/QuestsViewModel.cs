@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -70,7 +70,7 @@ namespace Grabacr07.KanColleViewer.ViewModels.Contents
 
 		public QuestsViewModel()
 		{
-			this.Name = "Quests";
+			this.Name = Properties.Resources.ViewModels_Quests;
 
 			this.IsUntaken = KanColleClient.Current.Homeport.Quests.IsUntaken;
 			this.Quests = KanColleClient.Current.Homeport.Quests.All.Select(x => new QuestViewModel(x)).ToArray();

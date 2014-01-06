@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -22,7 +22,6 @@ namespace Grabacr07.KanColleViewer.ViewModels
 		private MainContentViewModel mainContent;
 
 		public NavigatorViewModel Navigator { get; private set; }
-		public VolumeViewModel Volume { get; private set; }
 
 		#region Mode 変更通知プロパティ
 
@@ -36,12 +35,12 @@ namespace Grabacr07.KanColleViewer.ViewModels
 				{
 					case Mode.NotStarted:
 						this.Content = NotStartedViewModel.Instance;
-						StatusService.Current.Set("Waiting for Kantai Collection to start");
+						StatusService.Current.Set(Properties.Resources.StatusBar_NotStarted);
 						ThemeService.Current.Accent = Accent.Purple;
 						break;
 					case Mode.Started:
 						this.Content = this.mainContent ?? (this.mainContent = new MainContentViewModel());
-						StatusService.Current.Set("Ready");
+						StatusService.Current.Set(Properties.Resources.StatusBar_Ready);
 						ThemeService.Current.Accent = Accent.Blue;
 						break;
 					case Mode.InSortie:
@@ -133,9 +132,8 @@ namespace Grabacr07.KanColleViewer.ViewModels
 
 		public MainWindowViewModel()
 		{
-			this.Title = "KanColleViewer";
+			this.Title = App.ProductInfo.Title;
 			this.Navigator = new NavigatorViewModel();
-			this.Volume = new VolumeViewModel();
 
 			this.CompositeDisposable.Add(new PropertyChangedEventListener(StatusService.Current)
 			{
@@ -157,8 +155,8 @@ namespace Grabacr07.KanColleViewer.ViewModels
 			this.Messenger.Raise(message);
 
 			var notify = message.Response.IsSuccess
-				? "Screenshot saved: " + Path.GetFileName(path)
-				: "Screenshot failed: " + message.Response.Exception.Message;
+				? Properties.Resources.Screenshot_Saved + Path.GetFileName(path)
+				: Properties.Resources.Screenshot_Failed + message.Response.Exception.Message;
 			StatusService.Current.Notify(notify);
 		}
 	}
