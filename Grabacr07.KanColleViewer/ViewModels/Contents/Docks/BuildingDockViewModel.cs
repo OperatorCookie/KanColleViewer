@@ -85,19 +85,25 @@ namespace Grabacr07.KanColleViewer.ViewModels.Contents.Docks
 			this.source = source;
 			this.CompositeDisposable.Add(new PropertyChangedEventListener(source, (sender, args) => this.RaisePropertyChanged(args.PropertyName)));
 
-			if (Helper.IsWindows8OrGreater)
+			source.Completed += (sender, args) =>
 			{
-				source.Completed += (sender, args) =>
+				if (this.IsNotifyCompleted)
 				{
-					if (this.IsNotifyCompleted)
+					if (Helper.IsWindows8OrGreater)
 					{
 						Toast.Show(
 							"Building Dock",
 							string.Format("Construction of {1} in dock {0} is complete.", this.Id, this.CanDisplayShipName ? "" + this.Ship + "" : "ship"),
 							() => App.ViewModelRoot.Messenger.Raise(new WindowActionMessage(WindowAction.Active, "Window/Activate")));
 					}
-				};
-			}
+					else
+					{
+						NotifyIconWrapper.Show(
+							"Building Dock",
+							string.Format("Construction of {1} in dock {0} is complete.", this.Id, this.CanDisplayShipName ? "" + this.Ship + "" : "ship"));
+					}
+				}
+			};
 		}
 	}
 }
