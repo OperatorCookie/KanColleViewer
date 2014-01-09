@@ -29,7 +29,10 @@ namespace Grabacr07.KanColleViewer.Model
 
 		public static void Dispose()
 		{
+			if (Helper.IsWindows8OrGreater == false)
+			{
 			notifyIcon.Dispose();
+			}
 		}
 	}
 }
