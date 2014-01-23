@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -65,25 +65,31 @@ namespace Grabacr07.KanColleViewer.ViewModels.Contents.Fleets
 			this.source = expedition;
 			this.CompositeDisposable.Add(new PropertyChangedEventListener(expedition, (sender, args) => this.RaisePropertyChanged(args.PropertyName)));
 
-			expedition.Returned += (sender, args) =>
+			if (Toast.IsSupported)
 			{
-				if (this.IsNotifyReturned)
+				expedition.Returned += (sender, args) =>
 				{
-					if (Helper.IsWindows8OrGreater)
+					if (this.IsNotifyReturned)
 					{
 						Toast.Show(
 							"Expedition",
 							args.FleetName + " has returned from the expedition.",
-							() => App.ViewModelRoot.Messenger.Raise(new WindowActionMessage(WindowAction.Active, "Window/Activate")));
+							() => App.ViewModelRoot.Activate());
 					}
-					else
+				};
+			}
+			else
+			{
+				expedition.Returned += (sender, args) =>
+				{
+					if (this.IsNotifyReturned)
 					{
 						NotifyIconWrapper.Show(
 							"Expedition",
 							args.FleetName + " has returned from the expedition.");
 					}
-				}
-			};
+				};
+			}
 		}
 	}
 }

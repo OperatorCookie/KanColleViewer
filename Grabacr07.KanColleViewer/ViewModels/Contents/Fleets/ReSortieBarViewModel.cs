@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -106,25 +106,31 @@ namespace Grabacr07.KanColleViewer.ViewModels.Contents.Fleets
 			this.UpdateMessage();
 			this.UpdateRemaining();
 
-			reSortie.Readied += (sender, args) =>
+			if (Toast.IsSupported)
 			{
-				if (this.IsNotifyReadied)
+				reSortie.Readied += (sender, args) =>
 				{
-					if (Helper.IsWindows8OrGreater)
+					if (this.IsNotifyReadied)
 					{
 						Toast.Show(
 							"Morale Recovery",
 							"Morale of ships in the " + parent.Name + "has fully recovered.",
-							() => App.ViewModelRoot.Messenger.Raise(new WindowActionMessage(WindowAction.Active, "Window/Activate")));
+							() => App.ViewModelRoot.Activate());
 					}
-					else
+				};
+			}
+			else
+			{
+				reSortie.Readied += (sender, args) =>
+				{
+					if (this.IsNotifyReadied)
 					{
 						NotifyIconWrapper.Show(
 							"Morale Recovery",
 							"Morale of ships in the " + parent.Name + "has fully recovered.");
 					}
-				}
-			};
+				};
+			}
 		}
 
 

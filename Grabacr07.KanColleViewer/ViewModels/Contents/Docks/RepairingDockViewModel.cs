@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -70,25 +70,32 @@ namespace Grabacr07.KanColleViewer.ViewModels.Docks
 			this.source = source;
 			this.CompositeDisposable.Add(new PropertyChangedEventListener(source, (sender, args) => this.RaisePropertyChanged(args.PropertyName)));
 
-			source.Completed += (sender, args) =>
+			if (Toast.IsSupported)
 			{
-				if (this.IsNotifyCompleted)
+				source.Completed += (sender, args) =>
 				{
-					if (Helper.IsWindows8OrGreater)
+					if (this.IsNotifyCompleted)
 					{
 						Toast.Show(
 							"Repair Dock",
 							string.Format("Dock {0} has finished repairing {1}", this.Id, this.Ship),
-							() => App.ViewModelRoot.Messenger.Raise(new WindowActionMessage(WindowAction.Active, "Window/Activate")));
+							() => App.ViewModelRoot.Activate());
 					}
-					else
+				};
+			}
+			else
+			{
+				source.Completed += (sender, args) =>
+				{
+					if (this.IsNotifyCompleted)
 					{
 						NotifyIconWrapper.Show(
 							"Repair Dock",
 							string.Format("Dock {0} has finished repairing {1}", this.Id, this.Ship));
 					}
-				}
-			};
+				};
+			}
+
 		}
 	}
 }
